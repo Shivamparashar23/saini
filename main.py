@@ -47,7 +47,7 @@ bot_token = os.getenv("BOT_TOKEN", "")  # Default to empty string if not set
 MR = os.getenv("MR", "DefaultMR")       # Default to "DefaultMR" if not set
 TOKEN_CP = os.getenv("TOKEN_CP", "")    # Default to empty string if not set
 user_id = os.getenv("USER_ID", "")      # Default to empty string if not set
-os.environ["TOKEN_CP"] = TOKEN_CP       # Ensure environment is updated with initial value
+TOKEN_CP = "eyJhbGciOiJIUzM4NCIsInR5cCI6IkpXVCJ9.eyJpZCI6MTU4ODMwOTM2LCJvcmdJZCI6NzI1MDI2LCJ0eXBlIjoxLCJtb2JpbGUiOiI5MTk5OTMyMDIxNTQiLCJuYW1lIjoiSmFudmkiLCJlbWFpbCI6InF1ZW50aW40NDRjZjJAMmhsLnVuZGVyc2VhZ29sZi5jb20iLCJpc0ZpcnN0TG9naW4iOnRydWUsImRlZmF1bHRMYW5ndWFnZSI6IkVOIiwiY291bnRyeUNvZGUiOiJJTiIsImlzSW50ZXJuYXRpb25hbCI6MCwiaXNEaXkiOnRydWUsImxvZ2luVmlhIjoiT3RwIiwiZmluZ2VycHJpbnRJZCI6IjIzZDZiY2ExOWVkYTQ5YWU4MTc3MGYzMWY4NjM4ODg4IiwiaWF0IjoxNzU0NDc2MTUzLCJleHAiOjE3NTUwODA5NTN9.VOVSjTX_irAgLzAgZzYaWpwiIPcy5u-S9EiSSECcKHchDMoERTGb6O4-WdkIRe4d"      # Ensure environment is updated with initial value
 os.environ["USER_ID"] = user_id         # Ensure environment is updated with initial value
 
 if not bot_token:
@@ -821,14 +821,14 @@ async def txt_handler(bot: Client, m: Message):
 
             elif "https://cpvod.testbook.com/" in url or "classplusapp.com/drm/" in url:
                 url = url.replace("https://cpvod.testbook.com/","https://media-cdn.classplusapp.com/drm/")
-                url = f"https://cpapi-rjbs-1l0p.onrender.com/extract_keys?url={url}@bots_updatee&user_id=1003575883"
+                url = f"https://cpapi-rjbs-1l0p.onrender.com/extract_keys?url={url}@bots_updatee&user_id=158830936"
                 #url = f"https://scammer-keys.vercel.app/api?url={url}&token={TOKEN_CP}&auth=@scammer_botxz1"
                 mpd, keys = helper.get_mps_and_keys(url)
                 url = mpd
                 keys_string = " ".join([f"--key {key}" for key in keys])
 
             elif "classplusapp" in url:
-                signed_api = f"https://cpapi-rjbs-1l0p.onrender.com/extract_keys?url={url}@bots_updatee&user_id=1003575883"
+                signed_api = f"https://cpapi-rjbs-1l0p.onrender.com/extract_keys?url={url}@bots_updatee&user_id=158830936"
                 response = requests.get(signed_api, timeout=20)
                 #url = response.text.strip()
                 url = response.json()['url']  
