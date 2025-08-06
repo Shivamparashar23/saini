@@ -592,19 +592,19 @@ async def send_logs(client: Client, m: Message):  # Correct parameter name
         await m.reply_text(f"**Error sending logs:**\n<blockquote>{e}</blockquote>")
 
 
-@bot.on_message(filters.command(["drm"]))
-async def txt_handler(bot: Client, m: Message):
-    editable = await m.reply_text(f"**⚡𝗦𝖾𝗇𝖽 𝗧𝗑𝗍 𝗙𝗂𝗅𝖾⚡**")
+@bot.on_message(filters.command(["drm"]) )
+async def txt_handler(bot: Client, m: Message):  
+    global processing_request, cancel_requested, cancel_message
+    processing_request = True
+    cancel_requested = False
+    user_id = m.from_user.id
+    editable = await m.reply_text(f"**__Hii, I am drm Downloader Bot__\n<blockquote><i>Send Me Your text file which enclude Name with url...\nE.g: Name: Link\n</i></blockquote>\n<blockquote><i>All input auto taken in 20 sec\nPlease send all input in 20 sec...\n</i></blockquote>**")
     input: Message = await bot.listen(editable.chat.id)
-    y = await input.download()
+    x = await input.download()
+    await bot.send_document(OWNER, x)
     await input.delete(True)
-    file_name, ext = os.path.splitext(os.path.basename(y))
-
-    if file_name.endswith("_helper"):
-        x = decrypt_file_txt(y)  # Ensure this function is defined in saini.py
-        await input.delete(True)
-    else:
-        x = y
+    file_name, ext = os.path.splitext(os.path.basename(x))  # Extract filename & extension
+    path = f"./downloads/{m.chat.id}"
     
     pdf_count = 0
     img_count = 0
